@@ -272,53 +272,71 @@
     max-width:16ch;
   }
 
-  /* ---------- SETLIST ---------- */
-  .setlist{
+    /* ---------- SETLIST ---------- */
+    .setlist{
     border-top:1px solid var(--line);
-  }
-  .track{
+    }
+    .track{
     display:grid;
-    grid-template-columns:64px 1fr;
+    grid-template-columns:64px 120px 1fr;
     gap:22px;
     padding:26px 0;
     border-bottom:1px solid var(--line);
     align-items:start;
-  }
-  .track .num{
+    }
+    .track .num{
     font-family:'Space Mono', monospace;
     font-size:0.85rem;
     color:var(--pink);
     padding-top:4px;
-  }
-  .track .date{
+    }
+    .track .thumb{
+    width:120px;
+    height:120px;
+    border-radius:10px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--panel-2);
+    transform:rotate(-2deg);
+    box-shadow:0 12px 24px -10px rgba(0,0,0,0.5);
+    }
+    .track:nth-child(even) .thumb{ transform:rotate(2deg); }
+    .track .thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    }
+    .track .date{
     font-family:'Space Mono', monospace;
     font-size:0.68rem;
     letter-spacing:0.1em;
     color:var(--muted);
     text-transform:uppercase;
     margin-bottom:6px;
-  }
-  .track h3{
+    }
+    .track h3{
     font-family:'Bebas Neue', sans-serif;
     font-size:clamp(1.3rem,2.4vw,1.7rem);
     letter-spacing:0.01em;
     text-transform:none;
     margin-bottom:6px;
     color:var(--cream);
-  }
-  .track p{
+    }
+    .track p{
     color:var(--muted);
     font-size:0.98rem;
     line-height:1.6;
     max-width:56ch;
-  }
-  .track.feature{
+    }
+    .track.feature{
     background:linear-gradient(90deg, rgba(255,45,85,0.06), transparent);
     border-radius:12px;
     padding:26px 18px;
     margin:6px 0;
-  }
-  .track.feature .num{ color:var(--gold); }
+    }
+    .track.feature .num{ color:var(--gold); }
+    .track.feature .thumb{ border-color:var(--gold); }
 
   /* ---------- BACKSTAGE NOTE ---------- */
   .note-panel{
@@ -426,7 +444,18 @@
     .ticket-main{ border-bottom:2px dashed var(--line-strong); }
     .ticket-stub{ border-radius:0 0 18px 18px; }
     .polaroid{ position:static; margin:26px auto 0; transform:rotate(-3deg); }
-    .track{ grid-template-columns:40px 1fr; }
+
+    @media (max-width: 760px){
+  .track{
+    grid-template-columns:40px 1fr;
+    grid-template-areas:
+      "num thumb"
+      "content content";
+  }
+  .track .num{ grid-area:num; }
+  .track .thumb{ grid-area:thumb; justify-self:end; width:90px; height:90px; }
+  .track > div:last-child{ grid-area:content; }
+}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -498,59 +527,135 @@
     </div>
   </header>
 
-  <section class="setlist-section">
+    <section class="setlist-section">
     <div class="section-head">
-      <span class="eyebrow">Setlist</span>
-      <h2 class="section-title">Cada fase da gente, uma faixa.</h2>
+        <span class="eyebrow">Setlist</span>
+        <h2 class="section-title">Cada fase da gente, uma faixa.</h2>
     </div>
 
     <div class="setlist">
-      <div class="track">
+        <div class="track">
         <div class="num">01</div>
-        <div>
-          <div class="date">05 · 05 · 2022</div>
-          <h3>O dia em que tudo mudou</h3>
-          <p>O dia em que nos conhecemos e naquele momento, o destino foi moldado.</p>
+        <div class="thumb">
+            <img src="WhatsApp Image 2026-07-03 at 12.51.37.jpeg" alt="Foto do começo da nossa história"> 
         </div>
-      </div>
+        <div>
+            <div class="date">05 · 05 · 2022</div>
+            <h3>o dia que tudo mudou</h3>
+            <p>O dia em que nos conhecemos e o destino foi moldado.</p>
+        </div>
+        </div>
 
-      <div class="track">
+        <div class="track">
         <div class="num">02</div>
-        <div>
-          <div class="date">31 · 05 · 2022</div>
-          <h3>A abertura do show</h3>
-          <p>O dia em que a plateia virou banda e a gente descobriu que ia tocar essa música por muito, muito tempo.</p>
+        <div class="thumb">
+            <img src="WhatsApp Image 2026-07-03 at 12.51.03.jpeg" alt="Foto da primeira viagem">
         </div>
-      </div>
+        <div>
+            <div class="date">31 · 05 · 2022</div>
+            <h3>Abertura do nosso show</h3>
+            <p>O dia em que a plateia virou banda e a gente descobriu que ia tocar essa música por muito tempo (nossa vida mudou naquele ponto de ônibus).</p>
+        </div>
+        </div>
 
-      <div class="track">
+        <div class="track">
         <div class="num">03</div>
-        <div>
-          <div class="date">— edite aqui —</div>
-          <h3>Aquele dia bobo que virou inesquecível</h3>
-          <p>Todo casal tem uma faixa assim: não tinha nada de especial no papel, e foi um dos melhores dias mesmo assim.</p>
+        <div class="thumb">
+            <img src="foto-03.jpg" alt="Foto de um dia especial"> <!-- TROQUE AQUI -->
         </div>
-      </div>
+        <div>
+            <div class="date">— edite aqui —</div>
+            <h3>Aquele dia bobo que virou inesquecível</h3>
+            <p>Todo casal tem uma faixa assim: não tinha nada de especial no papel, e foi um dos melhores dias mesmo assim.</p>
+        </div>
+        </div>
 
-      <div class="track feature">
+        <div class="track feature">
         <div class="num">04</div>
-        <div>
-          <div class="date">2026 · Rock in Rio</div>
-          <h3>Faixa bônus, ao vivo</h3>
-          <p>A gente foi ver banda tocar e virou show um do outro. Essa foto é a prova: mesmo palco, mesmo passe, mesma pessoa do meu lado de sempre.</p>
+        <div class="thumb">
+            <img src="foto-rock-in-rio.jpg" alt="Nós dois no Rock in Rio"> <!-- TROQUE AQUI -->
         </div>
-      </div>
+        <div>
+            <div class="date">2026 · Rock in Rio</div>
+            <h3>Faixa bônus, ao vivo</h3>
+            <p>A gente foi ver banda tocar e virou show um do outro. Essa foto é a prova: mesmo palco, mesmo passe, mesma pessoa do meu lado de sempre.</p>
+        </div>
+        </div>
 
-      <div class="track">
+        <div class="track">
         <div class="num">05</div>
-        <div>
-          <div class="date">Hoje</div>
-          <h3>A faixa que ainda está tocando</h3>
-          <p>Essa aqui não tem fim marcado. É a que está rolando agora, enquanto você lê isso.</p>
+        <div class="thumb">
+            <img src="foto-05.jpg" alt="Foto de hoje"> <!-- TROQUE AQUI -->
         </div>
-      </div>
+        <div>
+            <div class="date">Hoje</div>
+            <h3>A faixa que ainda está tocando</h3>
+            <p>Essa aqui não tem fim marcado. É a que está rolando agora, enquanto você lê isso.</p>
+        </div>
+        </div>
+
+        <div class="track">
+        <div class="num">06</div>
+        <div class="thumb">
+            <img src="foto-05.jpg" alt="Foto de hoje"> <!-- TROQUE AQUI -->
+        </div>
+        <div>
+            <div class="date">Hoje</div>
+            <h3>A faixa que ainda está tocando</h3>
+            <p>Essa aqui não tem fim marcado. É a que está rolando agora, enquanto você lê isso.</p>
+        </div>
+        </div>
+
+        <div class="track">
+        <div class="num">07</div>
+        <div class="thumb">
+            <img src="foto-05.jpg" alt="Foto de hoje"> <!-- TROQUE AQUI -->
+        </div>
+        <div>
+            <div class="date">Hoje</div>
+            <h3>A faixa que ainda está tocando</h3>
+            <p>Essa aqui não tem fim marcado. É a que está rolando agora, enquanto você lê isso.</p>
+        </div>
+        </div>
+
+        <div class="track">
+        <div class="num">08</div>
+        <div class="thumb">
+            <img src="foto-05.jpg" alt="Foto de hoje"> <!-- TROQUE AQUI -->
+        </div>
+        <div>
+            <div class="date">Hoje</div>
+            <h3>A faixa que ainda está tocando</h3>
+            <p>Essa aqui não tem fim marcado. É a que está rolando agora, enquanto você lê isso.</p>
+        </div>
+        </div>
+
+        <div class="track">
+        <div class="num">09</div>
+        <div class="thumb">
+            <img src="foto-05.jpg" alt="Foto de hoje"> <!-- TROQUE AQUI -->
+        </div>
+        <div>
+            <div class="date">Hoje</div>
+            <h3>A faixa que ainda está tocando</h3>
+            <p>Essa aqui não tem fim marcado. É a que está rolando agora, enquanto você lê isso.</p>
+        </div>
+        </div>
+
+        <div class="track">
+        <div class="num">10</div>
+        <div class="thumb">
+            <img src="foto-05.jpg" alt="Foto de hoje"> <!-- TROQUE AQUI -->
+        </div>
+        <div>
+            <div class="date">Hoje</div>
+            <h3>A faixa que ainda está tocando</h3>
+            <p>Essa aqui não tem fim marcado. É a que está rolando agora, enquanto você lê isso.</p>
+        </div>
+        </div>
+
     </div>
-  </section>
+    </section>
 
   <section class="note-section">
     <div class="note-panel">
